@@ -238,7 +238,7 @@ def load_entries(root: Path) -> list[Entry]:
             continue
 
         sid = fm.get("sid_metadata") or {}
-        prov = fm.get("providence") or fm.get("provenance") or {}
+        prov = fm.get("provenance") or {}
         iso = fm.get("isomorphism_metadata") or {}
         vstat = fm.get("validation_status") or {}
 
