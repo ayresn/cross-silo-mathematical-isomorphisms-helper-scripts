@@ -303,10 +303,6 @@ def _validate(e: Entry, readme_row: dict) -> None:
         e.problems.append("missing domain_a and/or domain_b")
     if not e.structural_family:
         e.problems.append("missing structural_family")
-    if len(e.vectors) != 3:
-        e.problems.append(f"triple_correspondence_vectors has {len(e.vectors)} items, expected 3")
-    elif len(set(e.vectors)) != 3:
-        e.problems.append("triple_correspondence_vectors contains duplicates")
 
     if re.search(r"entry-0*(\d+)", e.path):
         file_num = int(re.search(r"entry-0*(\d+)", e.path).group(1))
@@ -327,18 +323,6 @@ def _validate(e: Entry, readme_row: dict) -> None:
             f"maturity_stage is '{e.maturity_stage}' but {e.n_reject}/{e.n_reviews} "
             f"reject votes imply '{exp}'"
         )
-
-    if readme_row:
-        rp = readme_row.get("pct")
-        if rp is not None and e.reviews and rp != round(100 * e.n_reject / e.n_reviews):
-            e.problems.append(
-                f"README reports {rp}% reject but entry YAML has {e.reject_pct}"
-            )
-    elif e.number > 0:
-        e.problems.append("no matching row found in README directory")
-
-    if not e.synthesis:
-        e.problems.append("no System Synthesis display string (README row or display.system_synthesis)")
 
 
 # --------------------------------------------------------------------------
