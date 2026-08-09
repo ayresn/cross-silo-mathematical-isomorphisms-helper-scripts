@@ -557,7 +557,7 @@ def render_stage3_queue(entries: list[Entry]) -> str:
         return out + "_Queue is empty._\n"
     out += f"{len(queue)} entries awaiting Stage 3.\n\n"
     for i, e in enumerate(queue, 1):
-        out += (f"{i}. **{e.link()}** — {e.title}\n"
+        out += (f"1. **{e.link()}** — {e.title}\n"
                 f"   * *Domains:* {prettify(e.domain_a)} & {prettify(e.domain_b)}\n"
                 f"   * *Reject-vote share:* {e.reject_pct} "
                 f"({e.n_reject}/{e.n_reviews} reviewers)\n")
