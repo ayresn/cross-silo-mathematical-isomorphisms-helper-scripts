@@ -160,7 +160,7 @@ class Entry:
             return None
         if self.n_reject == 0:
             return "adversarial-cleared"
-        if self.n_reject >= 4:
+        if self.n_reject >= 5:
             return "adversarial-rejected"
         return "adversarial-flagged"
 
